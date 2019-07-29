@@ -1,7 +1,3 @@
-
-# Created by https://www.gitignore.io/api/java,maven,gradle,eclipse,intellij
-# Edit at https://www.gitignore.io/?templates=java,maven,gradle,eclipse,intellij
-
 ### Eclipse ###
 .metadata
 bin/
@@ -102,11 +98,11 @@ local.properties
 # When using Gradle or Maven with auto-import, you should exclude module files,
 # since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
-# .idea/modules.xml
-# .idea/*.iml
-# .idea/modules
-# *.iml
-# *.ipr
+.idea/modules.xml
+.idea/*.iml
+.idea/modules
+*.iml
+*.ipr
 
 # CMake
 cmake-build-*/
@@ -208,4 +204,36 @@ gradle-app.setting
 ### Gradle Patch ###
 **/build/
 
-# End of https://www.gitignore.io/api/java,maven,gradle,eclipse,intellij
+#Kam mit Spring dazu
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
