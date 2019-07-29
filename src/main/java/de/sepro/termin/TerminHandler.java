@@ -6,20 +6,18 @@ import org.slf4j.LoggerFactory;
 import java.lang.invoke.MethodHandles;
 import java.util.Date;
 
-
 public class TerminHandler {
 	
-	static Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-	
+	private static Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 	
 	public static void createTermin(Date date, String user, String info, int ID) {
-		log.debug("-> createTermin() {date={}, user={}, info={}, ID={}", date, user, info, ID);
-		Termin termin = new Termin(date, user, info, ID);
+		log.debug("-> createTermin() {date={}, user={}, info={}, id={}", date, user, info, ID);
+		Termin termin = new Termin(ID, date, user, info);
 		log.debug("<- createTermin()");
 	}
 	
 	public static void deleteTermin(int ID) {
-		log.debug("-> deleteTermin() {ID={}", ID);
+		log.debug("-> deleteTermin() {id={}", ID);
 		log.debug("<- deleteTermin()");
 	}
 	
@@ -29,7 +27,7 @@ public class TerminHandler {
 	}
 	
 	public static Termin searchTermin(int ID) {
-		log.debug("-> searchTermin() {ID={}", ID);
+		log.debug("-> searchTermin() {id={}", ID);
 		
 		Termin termin = null;
 		
