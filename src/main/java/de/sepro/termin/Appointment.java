@@ -1,27 +1,31 @@
 package de.sepro.termin;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
-public class Termin {
+@Entity
+public class Appointment {
 	
-	private int id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 	private Date date;
 	private String user;
 	private String info;
 	
-	public Termin( int id, Date date, String user, String info) {
-		this.id = id;
+	public Appointment() {}
+	
+	public Appointment(Date date, String user, String info) {
 		this.date = date;
 		this.user = user;
 		this.info = info;
 	}
 	
-	public int getId() {
+	public Long getId() {
 		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
 	}
 	
 	public Date getDate() {
@@ -47,5 +51,9 @@ public class Termin {
 	public void setInfo(String info) {
 		this.info = info;
 	}
-
+	
+	@Override
+	public String toString() {
+		return String.format("Appointment[id=%d, date='%s', user='%s', info='%s']", id, date.toString(), user, info);
+	}
 }

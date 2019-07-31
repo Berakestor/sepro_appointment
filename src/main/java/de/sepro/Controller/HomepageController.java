@@ -8,6 +8,7 @@ public class HomepageController {
 	
 	@RequestMapping("/")
 	public String sayHello() {
-		return "<h1>Hello whad up?</h1>";
+		//Programmers note: "He is da Homepage. Repecc him"
+		return "<h1>Ik bin da Homepage./h1>";
 	}
 }
