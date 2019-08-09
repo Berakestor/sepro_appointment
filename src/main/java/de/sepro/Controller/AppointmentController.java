@@ -1,37 +1,47 @@
 package de.sepro.Controller;
 
 import de.sepro.appointment.Appointment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import de.sepro.repository.AppointmentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import java.lang.invoke.MethodHandles;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@RestController
+@Controller
+@RequestMapping(path="/termin")
 public class AppointmentController {
 	
-	private Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+	@Autowired
 	
-	//Add appointment
-	@RequestMapping(
-			method = RequestMethod.POST,
-			path= "/addTermin" )
-	@ResponseBody
-	public int addTermin(HttpServletRequest request,
-						 @RequestParam(value="customer_id") Long customer_id,
-						 @RequestParam(value="employee_id") Long employee_id,
-						 @RequestParam(value="status_id") Long status_id,
-						 @RequestParam(value="partner_service_id") Long partner_service_id,
-						 @RequestParam(value="date") LocalDate date,
-						 @RequestParam(value="start") LocalTime start,
-						 @RequestParam(value="end") LocalTime end) {
-		log.debug("-> addTermin(request={}, customer_id={}, employee_id={}, status_id={}, partner_service_id={}, date={}, start={}, end={})",
-				request, customer_id, employee_id, status_id, partner_service_id, date, start, end);
-		Appointment appointment = new Appointment(customer_id, employee_id, status_id, partner_service_id, date, start, end);
-		log.debug("<- addTermin()");
-		return 0;
+	private AppointmentRepository repository;
+	
+	@PostMapping(path="/add",
+			consumes = MediaType.APPLICATION_JSON_VALUE )
+	public @ResponseBody String addNewUser (
+				@RequestBody Appointment appointment) {
+		// @ResponseBody means the returned String is the response, not a view name
+		// @RequestParam means it is a parameter from the GET or POST request
+		
+		/*Appointment appointment = new Appointment();
+		appointment.setCustomer_id((long) customer_id);
+		appointment.setEmployee_id((long) employee_id);
+		appointment.setStatus_id((long) status_id);
+		appointment.setPartner_service_id((long) partner_service_id);
+		appointment.setDate(LocalDate.parse(date));
+		appointment.setStart(LocalTime.parse(start));
+		appointment.setEnd(LocalTime.parse(end));*/
+		
+		Appointment appointment1 = new Appointment(appointment);
+		repository.save(appointment);
+		return "Saved";
+	}
+	
+	@GetMapping(path="/all")
+	public @ResponseBody Iterable<Appointment> getAllUsers() {
+		// This returns a JSON or XML with the users
+		return repository.findAll();
 	}
 }

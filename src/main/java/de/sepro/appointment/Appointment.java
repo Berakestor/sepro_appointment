@@ -21,6 +21,16 @@ public class Appointment {
 	
 	public Appointment() {}
 	
+	public Appointment(Appointment appointment) {
+		this.customer_id = appointment.getCustomer_id();
+		this.employee_id = appointment.getEmployee_id();
+		this.status_id = appointment.getStatus_id();
+		this.partner_service_id = appointment.getPartner_service_id();
+		this.date = appointment.getDate();
+		this.start = appointment.getStart();
+		this.end = appointment.getEnd();
+	}
+	
 	public Appointment(Long customer_id, Long employee_id, Long status_id, Long partner_service_id, LocalDate date, LocalTime start, LocalTime end) {
 		this.customer_id = customer_id;
 		this.employee_id = employee_id;
