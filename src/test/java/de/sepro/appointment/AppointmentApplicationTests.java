@@ -1,4 +1,4 @@
-package de.sepro.termin;
+package de.sepro.appointment;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
