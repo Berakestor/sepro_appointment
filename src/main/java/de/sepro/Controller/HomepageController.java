@@ -1,14 +1,16 @@
 package de.sepro.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
+@RequestMapping(path="/")
 public class HomepageController {
 	
-	@RequestMapping("/")
+	@Autowired
+	
 	public String sayHello() {
-		//Programmers note: "He is da Homepage. Repecc him"
-		return "<h1>Ik bin da Homepage./h1>";
+		return "<h1>\"JUSTICE. JUSTICE. JUSTICE\" - OVER JUSTICE</h1>";
 	}
 }
