@@ -12,20 +12,20 @@ public class Appointment {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private Long customerID;
-	private Long employee_id;
-	private Long status_id;
-	private Long partner_service_id;
+	private Long employeeId;
+	private Long statusId;
+	private Long partnerServiceId;
 	private LocalDate date;
 	private LocalTime start;
 	private LocalTime end;
 	
 	public Appointment() {}
 	
-	public Appointment(Long customerID, Long employee_id, Long status_id, Long partner_service_id, LocalDate date, LocalTime start, LocalTime end) {
+	public Appointment(Long customerID, Long employeeId, Long statusId, Long partnerServiceId, LocalDate date, LocalTime start, LocalTime end) {
 		this.customerID = customerID;
-		this.employee_id = employee_id;
-		this.status_id = status_id;
-		this.partner_service_id = partner_service_id;
+		this.employeeId = employeeId;
+		this.statusId = statusId;
+		this.partnerServiceId = partnerServiceId;
 		this.date = date;
 		this.start = start;
 		this.end = end;
@@ -33,8 +33,8 @@ public class Appointment {
 	
 	@Override
 	public String toString() {
-		return String.format("appointment[id=%d, customer_id=%d, employee_id=%d, status_id=%d,partner_service_id=%d, date=%s, start=%s, end=%s",
-				id, customerID, employee_id, status_id, partner_service_id, date, start, end);
+		return String.format("appointment[id=%d, customerId=%d, employeeId=%d, statusId=%d,partnerServiceId=%d, date=%s, start=%s, end=%s",
+				id, customerID, employeeId, statusId, partnerServiceId, date, start, end);
 	}
 	
 	public Long getId() {
@@ -49,28 +49,28 @@ public class Appointment {
 		this.customerID = customerID;
 	}
 	
-	public Long getEmployee_id() {
-		return employee_id;
+	public Long getEmployeeId() {
+		return employeeId;
 	}
 	
-	public void setEmployee_id(Long employee_id) {
-		this.employee_id = employee_id;
+	public void setEmployeeId(Long employeeId) {
+		this.employeeId = employeeId;
 	}
 	
-	public Long getStatus_id() {
-		return status_id;
+	public Long getStatusId() {
+		return statusId;
 	}
 	
-	public void setStatus_id(Long status_id) {
-		this.status_id = status_id;
+	public void setStatusId(Long statusId) {
+		this.statusId = statusId;
 	}
 	
-	public Long getPartner_service_id() {
-		return partner_service_id;
+	public Long getPartnerServiceId() {
+		return partnerServiceId;
 	}
 	
-	public void setPartner_service_id(Long partner_service_id) {
-		this.partner_service_id = partner_service_id;
+	public void setPartnerServiceId(Long partnerServiceId) {
+		this.partnerServiceId = partnerServiceId;
 	}
 	
 	public LocalDate getDate() {
