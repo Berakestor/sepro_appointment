@@ -2,9 +2,15 @@ package de.sepro.Controller;
 
 import de.sepro.appointment.Appointment;
 import de.sepro.repository.AppointmentRepository;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(path="/appointment")
@@ -16,25 +22,101 @@ public class AppointmentController {
 		this.repository = repository;
 	}
 	
-	@PostMapping(path="/add",
-			consumes = MediaType.APPLICATION_JSON_VALUE )
-	public @ResponseBody String addNewUser (
-				@RequestBody Appointment appointment) {
+	/**
+	 * Adds a new Appointment to the database.
+	 * @param appointment - Appointment in Json format
+	 * @return String "saved"
+	 */
+	@PostMapping(path="/addAppointment",
+				consumes = MediaType.APPLICATION_JSON_VALUE )
+	public @ResponseBody String addAppointment (@RequestBody Appointment appointment) {
 		repository.save(appointment);
-		return "Saved";
+		return "Saved Appointment";
 	}
 	
-	@GetMapping(path="/all")
-	public @ResponseBody Iterable<Appointment> getAllUsers() {
-		// This returns a JSON or XML with the users
+	/**
+	 * Returns all appointments in JSON Format
+	 * @return All Appointments in JSON format
+	 */
+	@GetMapping(path="/getAllAppointments")
+	public @ResponseBody Iterable<Appointment> getAllAppointments() {
 		return repository.findAll();
 	}
 	
-	@GetMapping(path="/getTest")
-	public @ResponseBody Iterable<Appointment> getTest() {
-		// This returns a JSON or XML with the users
-		return repository.findAllByCustomerID((long) 1);
+	/**
+	 * Returns Appointment found by ID
+	 * @param id - Id of Appointment
+	 * @return Appointment
+	 */
+	@GetMapping(path="/findById")
+	public @ResponseBody Optional<Appointment> getById(@RequestParam Long id) {
+		return repository.findById(id);
+	}
+	
+	/**
+	 * Returns a List, containing all Appointments connected to the given customerId.
+	 * @param customerId - customerId
+	 * @return List of Appointments with customerId
+	 */
+	@GetMapping(path="/findByCustomerId")
+	public @ResponseBody List<Appointment> findByCustomerId(@RequestParam Long customerId) {
+		return repository.findByCustomerId(customerId);
+	}
+	
+	/**
+	 * Returns a List, containing all Appointments connected to the given employeeId
+	 * @param employeeId - Id of employee
+	 * @return List of appointments with employeeId
+	 */
+	@GetMapping(path="/findByEmployeeId")
+	public @ResponseBody List<Appointment> findByEmployeeId(@RequestParam Long employeeId) {
+		return repository.findByEmployeeId(employeeId);
+	}
+	
+	/**
+	 * Returns a List, containing all Appointments connected to the given statusId
+	 * @param statusId - Id of status
+	 * @return List of appointments with statusId
+	 */
+	@GetMapping(path="/findByStatusId")
+	public @ResponseBody List<Appointment> findByStatusId(@RequestParam Long statusId) {
+		return repository.findByStatusId(statusId);
+	}
+	
+	/**
+	 * Returns a List, containing all Appointments connected to the given partnerServiceId
+	 * @param partnerServiceId - Id of partnerService
+	 * @return List of appointments with partnerServiceId
+	 */
+	@GetMapping(path="/findByPartnerServiceId")
+	public @ResponseBody List<Appointment> findByPartnerServiceId(@RequestParam Long partnerServiceId) {
+		return repository.findByPartnerServiceId(partnerServiceId);
 	}
 	
 	
+	
+	/*TODO:----Doesnt work yet----*/
+	
+	/**
+	 * Returns a List, containing all Appointments connected to the given date
+	 * @param date - date
+	 * @return List of appointments with date
+	 */
+	@GetMapping(path="/findByDate",
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Appointment> findByDate(@RequestParam LocalDate date) {
+		return repository.findByDate(date);
+	}
+	
+	/**
+	 * Returns a List, containing all Appointments connected to the given date and starting time.
+	 * @param date - date
+	 * @param start - Starting time of Appointment
+	 * @return List of appointments
+	 */
+	@GetMapping(path="/findByDateAndStart",
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Appointment> findByDateAndStart(@RequestBody  LocalDate date, @RequestBody LocalTime start) {
+		return repository.findByDateAndStart(date, start);
+	}
 }

@@ -11,7 +11,7 @@ public class Appointment {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	private Long customerID;
+	private Long customerId;
 	private Long employeeId;
 	private Long statusId;
 	private Long partnerServiceId;
@@ -21,8 +21,8 @@ public class Appointment {
 	
 	public Appointment() {}
 	
-	public Appointment(Long customerID, Long employeeId, Long statusId, Long partnerServiceId, LocalDate date, LocalTime start, LocalTime end) {
-		this.customerID = customerID;
+	public Appointment(Long customerId, Long employeeId, Long statusId, Long partnerServiceId, LocalDate date, LocalTime start, LocalTime end) {
+		this.customerId = customerId;
 		this.employeeId = employeeId;
 		this.statusId = statusId;
 		this.partnerServiceId = partnerServiceId;
@@ -34,19 +34,19 @@ public class Appointment {
 	@Override
 	public String toString() {
 		return String.format("appointment[id=%d, customerId=%d, employeeId=%d, statusId=%d,partnerServiceId=%d, date=%s, start=%s, end=%s",
-				id, customerID, employeeId, statusId, partnerServiceId, date, start, end);
+				id, customerId, employeeId, statusId, partnerServiceId, date, start, end);
 	}
 	
 	public Long getId() {
 		return id;
 	}
 	
-	public Long getCustomerID() {
-		return customerID;
+	public Long getCustomerId() {
+		return customerId;
 	}
 	
-	public void setCustomerID(Long customerID) {
-		this.customerID = customerID;
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
 	
 	public Long getEmployeeId() {
