@@ -1,6 +1,6 @@
-package de.sepro.repository;
+package de.sepro.appointment.repository;
 
-import de.sepro.appointment.Appointment;
+import de.sepro.appointment.entity.Appointment;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
@@ -18,5 +18,8 @@ public interface AppointmentRepository extends CrudRepository<Appointment,Long> 
 	List<Appointment> findByPartnerServiceId(Long partnerServiceId);
 	List<Appointment> findByDate(LocalDate date);
 	List<Appointment> findByDateAndStart(LocalDate date, LocalTime start);
+	
+	//Not working yet --> Needed for Search
+	List<Appointment> findByPartnerIdAndDate(Long partnerId, LocalDate date);
 	
 }

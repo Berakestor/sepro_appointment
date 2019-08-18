@@ -1,4 +1,4 @@
-package de.sepro.appointment;
+package de.sepro.appointment.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package de.sepro.Controller;
+package de.sepro.appointment.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

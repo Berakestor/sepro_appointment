@@ -1,8 +1,7 @@
-package de.sepro.Controller;
+package de.sepro.appointment.controller;
 
-import de.sepro.appointment.Appointment;
-import de.sepro.repository.AppointmentRepository;
-import org.springframework.format.annotation.DateTimeFormat;
+import de.sepro.appointment.entity.Appointment;
+import de.sepro.appointment.repository.AppointmentRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -104,7 +103,7 @@ public class AppointmentController {
 	 */
 	@GetMapping(path="/findByDate",
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Appointment> findByDate(@RequestParam LocalDate date) {
+	public @ResponseBody List<Appointment> findByDate(@RequestBody LocalDate date) {
 		return repository.findByDate(date);
 	}
 	
@@ -118,5 +117,18 @@ public class AppointmentController {
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Appointment> findByDateAndStart(@RequestBody  LocalDate date, @RequestBody LocalTime start) {
 		return repository.findByDateAndStart(date, start);
+	}
+	
+	//TODO: Really important for Search
+	
+	/**
+	 * Returns a List, containing all Appointments connected to the given date
+	 * @param date - date
+	 * @return List of appointments with date
+	 */
+	@GetMapping(path="/findByPartnerIdAndDate",
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Appointment> findByPartnerIdAndDate(@RequestBody Long partnerId, @RequestBody LocalDate date) {
+		return repository.findByPartnerIdAndDate(partnerId, date);
 	}
 }
